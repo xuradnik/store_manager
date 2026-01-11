@@ -279,20 +279,6 @@
       "status": null,
       "note": null,
       "hire_date": null
-    },
-    {
-      "id": 22,
-      "name": "d",
-      "surname": "d",
-      "position": "d",
-      "department": "s",
-      "shift": "s",
-      "salary": 2.0,
-      "phone_number": "2",
-      "email": "s@s",
-      "status": false,
-      "note": "h",
-      "hire_date": null
     }
   ],
   "products": [

@@ -212,7 +212,7 @@
         </form>
     </div>
 
-    <!-- SEARCH EMPLOYEE -->
+
     <div id="employee-search-section" style="display:none">
         <div class="section-title">Search Employees</div>
         <form id="employee-search-form">
@@ -266,11 +266,11 @@
         </form>
     </div>
 
-    <!-- ADD/EDIT PRODUCT -->
+
     <div id="product-add-section" style="display:none">
         <div class="section-title" id="product-form-title">Add Product</div>
         <form id="product-add-form">
-            <input type="hidden" id="product-add-id"> <!-- Hidden ID for updates -->
+            <input type="hidden" id="product-add-id">
             <div class="form-grid">
                 <label>Name
                     <input id="product-add-name" type="text">
@@ -324,7 +324,7 @@
         </form>
     </div>
 
-    <!-- SEARCH PRODUCT -->
+
     <div id="product-search-section" style="display:none">
         <div class="section-title">Search Products</div>
         <form id="product-search-form">
@@ -393,16 +393,16 @@
 <pre id="results-raw" style="display:none"></pre>
 
 <script>
-    let currentMode = 'add';      // 'add' | 'search'
-    let currentEntity = 'employee'; // 'employee' | 'product'
-    let lastSearchResults = []; // Store results for export
+    let currentMode = 'add';
+    let currentEntity = 'employee';
+    let lastSearchResults = [];
 
     function setMode(mode) {
         currentMode = mode;
         document.getElementById('mode-add-btn').classList.toggle('active', mode === 'add');
         document.getElementById('mode-search-btn').classList.toggle('active', mode === 'search');
 
-        // If switching to add mode, ensure we are in "Add" state, not "Edit"
+
         if (mode === 'add') {
             cancelEdit();
         }
@@ -413,7 +413,7 @@
 
     function setEntity(entity) {
         currentEntity = entity;
-        cancelEdit(); // Clear form when switching entity
+        cancelEdit();
         updateVisibleSections();
         clearResults();
     }
@@ -446,7 +446,7 @@
 
     function resetForm(formId) {
         document.getElementById(formId).reset();
-        // If it's a search form, we might want to clear the results too
+
         if (formId.includes('search')) {
             clearResults();
         }
@@ -462,19 +462,18 @@
         const downloadAnchorNode = document.createElement('a');
         downloadAnchorNode.setAttribute("href", dataStr);
         downloadAnchorNode.setAttribute("download", currentEntity + "_search_results.json");
-        document.body.appendChild(downloadAnchorNode); // required for firefox
+        document.body.appendChild(downloadAnchorNode);
         downloadAnchorNode.click();
         downloadAnchorNode.remove();
     }
 
-    // --- Helper functions for payloads ---
+
 
     function buildEmployeePayload(prefix) {
         const payload = {};
         const get = id => document.getElementById(prefix + '-' + id);
 
         const idEl = get('id');
-        // Only include ID in payload if it's a search filter, not for add/update (handled separately)
         if (prefix.includes('search') && idEl && idEl.value.trim() !== '') {
             const v = parseInt(idEl.value.trim(), 10);
             if (!Number.isNaN(v)) payload.id = v;
@@ -615,8 +614,8 @@
 
         if (res.ok) {
             alert(id ? 'Employee updated.' : 'Employee saved.');
-            if (id) cancelEdit(); // Reset form after update
-            else e.target.reset(); // Clear form after add
+            if (id) cancelEdit();
+            else e.target.reset();
         } else {
             alert('Error saving employee');
         }
@@ -686,10 +685,10 @@
         renderResults(data, 'product');
     }
 
-    // --- Rendering & Actions ---
+
 
     function renderResults(data, type) {
-        lastSearchResults = data; // Save for export
+        lastSearchResults = data;
         const container = document.getElementById('results-container');
         container.innerHTML = '';
 
@@ -747,11 +746,11 @@
     }
 
     function startEdit(item, type) {
-        // Switch to Add mode (which is now Add/Edit)
+
         setMode('add');
         setEntity(type);
 
-        // Populate form
+
         if (type === 'employee') {
             document.getElementById('employee-form-title').textContent = `Edit Employee (ID: ${item.id})`;
             document.getElementById('employee-submit-btn').textContent = 'Update Employee';
@@ -801,7 +800,7 @@
     }
 
     function cancelEdit() {
-        // Reset UI to "Add" mode
+
         if (currentEntity === 'employee') {
             document.getElementById('employee-form-title').textContent = 'Add Employee';
             document.getElementById('employee-submit-btn').textContent = 'Save Employee';
@@ -817,7 +816,7 @@
         }
     }
 
-    // init
+
     updateVisibleSections();
 </script>
 
