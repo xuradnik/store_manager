@@ -1,0 +1,7 @@
+![Project Screenshot](Documentation/Store_Manager_5.png)
+![Project Screenshot](Documentation/Store_Manager_1.png)
+![Project Screenshot](Documentation/Store_Manager_2.png)
+![Project Screenshot](Documentation/Store_Manager_3.png)
+![Project Screenshot](Documentation/Store_Manager_4.png)
+![Project Screenshot](Documentation/Store_Manager_6.png)
+![Project Screenshot](Documentation/Store_Manager_7.png)
